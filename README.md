@@ -16,6 +16,6 @@ Keepalive recognizes the following signals:
 
 Change Log
 ----------
- * `1.1.0`: log support and reopen log on HUP
- * `1.0.1`: kill launched process on TERM
+ * `1.1.0`: log support and reopen log on `HUP`
+ * `1.0.1`: kill launched process on `TERM`
  * `1.0.0`: initial release
