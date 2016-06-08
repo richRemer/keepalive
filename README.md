@@ -16,6 +16,7 @@ Keepalive recognizes the following signals:
 
 Change Log
 ----------
+ * `1.3.1`: fix issues killing process group
  * `1.3.0`: --user option
  * `1.2.0`: --logfile option
  * `1.1.0`: log support and reopen log on `HUP`

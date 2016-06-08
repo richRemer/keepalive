@@ -20,7 +20,9 @@ openlog () {
 
 logfile=${logfile:-$KEEP_LOG}
 
-trap "kill -TERM -- -$$" EXIT
+pid=$$
+pgid=$(ps -o pgid= $pid | grep -o [0-9]*)
+trap "kill -TERM -- -$pgid" EXIT
 [ "$logfile" ] && openlog && trap openlog HUP
 
 while true; do
