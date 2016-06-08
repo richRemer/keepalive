@@ -1,34 +1,24 @@
 #!/bin/bash -e
+# Usage: keepalive <user> <log> <cmd> [<cmdopts>]
 
-while [[ "$1" == --* ]]; do
-    case "$1" in
-        --logfile)
-            logfile="$2"
-            shift;;
-        --user)
-            user="$2"
-            shift;;
-        *)
-            echo "unrecognized option: $1";;
-    esac
-    shift
-done
+user="$1"
+logfile="$2"
+shift 2 || (echo invalid arguments >&2 && exit 1)
 
 openlog () {
-    [ "$logfile" ] && exec &>> "$logfile"
+    exec &>> "$logfile"
 }
 
-logfile=${logfile:-$KEEP_LOG}
+pgid () {
+    pid=$$
+    echo $(ps -o pgid= $pid | grep -o [0-9]*)
+}
 
-pid=$$
-pgid=$(ps -o pgid= $pid | grep -o [0-9]*)
-trap "kill -TERM -- -$pgid" EXIT
-[ "$logfile" ] && openlog && trap openlog HUP
+trap "kill -TERM -- -`pgid`" EXIT
+openlog
+trap openlog HUP
 
 while true; do
-    if [ $user ]; then
-        sudo -u$user $@ && exit 0 || sleep 0.1
-    else
-        $@ && exit 0 || sleep 0.1
-    fi
+    sudo -u$user $@ || true
+    sleep 0.1
 done

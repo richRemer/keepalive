@@ -3,8 +3,13 @@ keepalive
 Keepalive is a *very* simple bash script that executes a process and respawns
 it if it exits.
 
+Usage
+-----
 ```sh
-$ keepalive --logfile my.log --user nobody /bin/my-service --options foo
+keepalive <user> <log> <cmd> [<cmdopts>]
+
+Example:
+$ keepalive nobody my.log /bin/my-service --options foo
 ```
 
 Signals
@@ -16,6 +21,7 @@ Keepalive recognizes the following signals:
 
 Change Log
 ----------
+ * `2.0.0`: required args
  * `1.3.1`: fix issues killing process group
  * `1.3.0`: --user option
  * `1.2.0`: --logfile option
