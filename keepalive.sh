@@ -6,7 +6,7 @@ logfile="$2"
 shift 2 || (echo invalid arguments >&2 && exit 1)
 
 openlog () {
-    exec &>> "$logfile"
+    exec 1>> "$logfile" 2>&1
 }
 
 pgid () {
@@ -14,9 +14,13 @@ pgid () {
     echo $(ps -o pgid= $pid | grep -o [0-9]*)
 }
 
-trap "kill -TERM -- -`pgid`" EXIT
-openlog
+terminate () {
+    kill -TERM -- -`pgid`
+}
+
+trap terminate EXIT
 trap openlog HUP
+openlog
 
 while true; do
     sudo -u$user $@ || true
