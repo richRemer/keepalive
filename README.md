@@ -6,13 +6,13 @@ exits.
 Usage
 -----
 ```sh
-keepalive [--num=<num>] <user> <log> <cmd> [<cmdopts>]
+keepalive [--num=<num>] <user> <log> -- <cmd> [<cmdopts>]
 
 ARGUMENTS
   user          Username which ia used to run service
   log           Path to log file
   cmd           Path to command
-  cmdopts	Options to pass to command
+  cmdopts       Options to pass to command
 
 OPTIONS
   --num=<num>	Number of instances to spawn (default 1)
@@ -21,7 +21,7 @@ OPTIONS
 Example
 -------
 ```sh
-$ keepalive nobody my.log /bin/my-service --options foo
+$ keepalive nobody my.log -- /bin/my-service --options foo
 ```
 
 Signals
@@ -33,7 +33,7 @@ Keepalive recognizes the following signals:
 
 Change Log
 ----------
- * `3.0.0`: bump version to reflect introduction of a breaking change
+ * `3.0.0`: bump version to reflect introduction of breaking change in 2.1.0
  * `2.1.0`: --num option (WARNING: this was unintentionally a breaking change)
  * `2.0.1`: fix issues reopening log file
  * `2.0.0`: required args
