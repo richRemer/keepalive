@@ -33,7 +33,8 @@ Keepalive recognizes the following signals:
 
 Change Log
 ----------
- * `2.1.0`: --num option
+ * `3.0.0`: bump version to reflect introduction of a breaking change
+ * `2.1.0`: --num option (WARNING: this was unintentionally a breaking change)
  * `2.0.1`: fix issues reopening log file
  * `2.0.0`: required args
  * `1.3.1`: fix issues killing process group

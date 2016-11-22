@@ -1,6 +1,6 @@
 {
   "name": "keepalive",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "start a process and respawn if it dies",
   "bin": {
     "keepalive": "keepalive.sh"
